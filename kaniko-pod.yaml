@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args:
+    - "--dockerfile=./Dockerfile"
+    - "--context=git://github.com/mifonpe/kaniko-examples#refs/heads/main"
+    - "--destination=fontanillamiguel/kaniko-test:v.0.0.1"
+    env:
+      - name: GIT_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: git-token
+            key: GIT_TOKEN
+    volumeMounts:
+    - name: docker-config
+      mountPath: /kaniko/.docker/
+  restartPolicy: Never
+  volumes:
+  - name: docker-config
+    secret:
+      secretName: docker-regcred
