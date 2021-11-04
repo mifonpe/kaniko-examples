@@ -9,7 +9,7 @@ spec:
     args:
     - "--dockerfile=./Dockerfile"
     - "--context=git://github.com/mifonpe/kaniko-examples#refs/heads/main"
-    - "--destination=fontanillamiguel/kaniko-test:v.0.0.1"
+    - "--destination=<your-repo>:<your-tag>"
     env:
       - name: GIT_TOKEN
         valueFrom:
