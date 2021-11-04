@@ -24,3 +24,6 @@ spec:
   - name: docker-config
     secret:
       secretName: docker-regcred
+      items:
+          - key: .dockerconfigjson
+            path: config.json
